@@ -38,11 +38,11 @@ public class FragmentBawah extends Fragment {
 
     private void initializeData(){
         itemPotatoes = new ArrayList<>();
-        itemPotatoes.add(new DataUpgrade("Minuman", 0,100));
-        itemPotatoes.add(new DataUpgrade("Headset",0,200));
-        itemPotatoes.add(new DataUpgrade("Poster",0,350));
-        itemPotatoes.add(new DataUpgrade("PC",0,450 ));
-        itemPotatoes.add(new DataUpgrade("Kursi",0,250));
+        itemPotatoes.add(new DataUpgrade("Drink", 0,100,0));
+        itemPotatoes.add(new DataUpgrade("PC",0,200,1));
+        itemPotatoes.add(new DataUpgrade("People",0,350, 3));
+        itemPotatoes.add(new DataUpgrade("Poster",0,450, 2));
+        itemPotatoes.add(new DataUpgrade("Chair",0,250, 4));
         //Minuman, headset, poster, PC, kursi
 
     }

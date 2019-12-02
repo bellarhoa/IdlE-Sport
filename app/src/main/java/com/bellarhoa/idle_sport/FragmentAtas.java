@@ -13,6 +13,11 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 public class FragmentAtas extends Fragment {
+    public static ImageView imageDrink;
+    public static ImageView imagePC;
+    public static ImageView imagePoster;
+    public static ImageView imageHeadset;
+    public static ImageView imageChair;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,6 +32,12 @@ public class FragmentAtas extends Fragment {
         final TextView textViewPoint = getActivity().findViewById(R.id.textView_point);
         final ProgressBar progBar = getActivity().findViewById(R.id.progBar);
         ImageView layoutTap = getActivity().findViewById(R.id.layoutTap);
+
+        imageDrink = getActivity().findViewById(R.id.imagedrink);
+        imagePC = getActivity().findViewById(R.id.imagepc);
+        imagePoster = getActivity().findViewById(R.id.imageposter);
+        imageHeadset = getActivity().findViewById(R.id.imagepeople);
+        imageChair = getActivity().findViewById(R.id.imagechair);
 
         Intent mIntent = new Intent(getActivity(), FragmentBawah.class);
         Bundle mBundle = new Bundle();
