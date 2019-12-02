@@ -6,8 +6,6 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +78,7 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
                 break;
         }
         ImageView image = ResourceArray.imageView[current.type];
-        image.setImageResource(ResourceArray.data[current.type][current.getLevel()>4?4:current.getLevel()]);
+        image.setImageResource(ResourceArray.data[current.type][current.getLevel() > 4 ? 4 : current.getLevel()]);
 
 
         holder.namaButton.setOnClickListener(new View.OnClickListener() {
