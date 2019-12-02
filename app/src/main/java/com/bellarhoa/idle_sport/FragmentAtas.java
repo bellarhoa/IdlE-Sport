@@ -2,13 +2,10 @@ package com.bellarhoa.idle_sport;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,9 +30,9 @@ public class FragmentAtas extends Fragment {
 
         Intent mIntent = new Intent(getActivity(), FragmentBawah.class);
         Bundle mBundle = new Bundle();
-//        mBundle.putInt("photo", R.id.imgMinuman);
         mIntent.putExtras(mBundle);
-
+        ImageView img= (ImageView) getActivity().findViewById(R.id.imageposter);
+        img.setImageResource(R.drawable.poster2);
         new Thread(new Runnable() {
             @Override
             public void run() {
