@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/imageBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,42 +13,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imagewall"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/wall" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageposter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/poster1" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagepc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/pc1" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imagepeople"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/people1" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imagechair"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/chair1" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imagedrink"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"

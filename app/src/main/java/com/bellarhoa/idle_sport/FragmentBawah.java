@@ -23,7 +23,7 @@ public class FragmentBawah extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bawah, container, false);
         initializeData();
         mRecyclerView = view.findViewById(R.id.recyclerview);
-        mAdapter = new RecycleViewAdapter_bawah(this,itemPotatoes);
+        mAdapter = new RecycleViewAdapter_bawah(getActivity(),itemPotatoes);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 

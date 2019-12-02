@@ -1,5 +1,6 @@
 package com.bellarhoa.idle_sport;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +22,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        SharedPreferences data = getSharedPreferences("data", 0);
+//        SharedPreferences dataSP = getSharedPreferences("dataSP",0);
+//
+//        SharedPreferences.Editor editData = dataSP.edit();
+//        editData.putInt("keyTap", 5);
+//        editData.apply();
 
         frgManager = getSupportFragmentManager();
         frgtransaction = frgManager.beginTransaction();

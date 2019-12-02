@@ -2,13 +2,10 @@ package com.bellarhoa.idle_sport;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,8 +30,9 @@ public class FragmentAtas extends Fragment {
 
         Intent mIntent = new Intent(getActivity(), FragmentBawah.class);
         Bundle mBundle = new Bundle();
-//        mBundle.putInt("photo", R.id.imgMinuman);
         mIntent.putExtras(mBundle);
+        ImageView img = getActivity().findViewById(R.id.imageposter);
+        img.setImageResource(R.drawable.poster2);
 
         new Thread(new Runnable() {
             @Override
@@ -72,22 +70,23 @@ public class FragmentAtas extends Fragment {
             @Override
             public void onClick(View view) {
                 //Hasil Tap default aja = 5, sementara pakai ini
-                SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP", 0);
-                int currPoint = dataSP.getInt("keyPoint", 0);
-                textViewPoint.setText(String.valueOf(currPoint+5) + "\t+5");
-
-                SharedPreferences.Editor editData = dataSP.edit();
-                editData.putInt("keyPoint", currPoint);
-                editData.apply();
-
-                //Ambil hasil Tap dari level upgrade
-//                SharedPreferences dataSP = getSharedPreferences("dataSP", 0);
-//                int currPoint = dataSP.getInt("keyPoint", 0) + dataSP.getInt("keyTap", 0);
-//                textViewPoint.setText(String.valueOf(currPoint));
+//                SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP", 0);
+//                int currPoint = dataSP.getInt("keyPoint", 0);
+//                textViewPoint.setText(String.valueOf(currPoint+5) + "\t+5");
 //
 //                SharedPreferences.Editor editData = dataSP.edit();
 //                editData.putInt("keyPoint", currPoint);
 //                editData.apply();
+
+                //Ambil hasil Tap dari level upgrade
+                SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP", 0);
+                int currPoint = dataSP.getInt("keyPoint", 0);
+                int currTap = dataSP.getInt("keyTap", 5);
+                textViewPoint.setText(String.valueOf(currPoint)+" +"+String.valueOf(currTap));
+
+                SharedPreferences.Editor editData = dataSP.edit();
+                editData.putInt("keyPoint", currPoint+currTap);
+                editData.apply();
             }
         });
     }

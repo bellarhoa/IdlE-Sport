@@ -1,12 +1,12 @@
 package com.bellarhoa.idle_sport;
-import android.graphics.Color;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -18,12 +18,13 @@ import java.util.ArrayList;
 
 public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAdapter_bawah.ViewHolder> {
     LayoutInflater mInflater;
-    ArrayList<DataUpgrade> itemPotatoes;
+    ArrayList<DataUpgrade> dataUpgrade;
+    Context context;
 
-
-    public RecycleViewAdapter_bawah(FragmentBawah context, ArrayList<DataUpgrade> itemPotatoes) {
-        this.mInflater = (LayoutInflater) LayoutInflater.from(context.getActivity());
-        this.itemPotatoes = itemPotatoes;
+    public RecycleViewAdapter_bawah(Context context, ArrayList<DataUpgrade> dataUpgrade) {
+        this.mInflater = LayoutInflater.from(context);
+        this.dataUpgrade = dataUpgrade;
+        this.context = context;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -32,8 +33,8 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
 
         public ViewHolder(View v) {
             super(v);
-            namaButton = (Button) v.findViewById(R.id.btn);
-            txt = (TextView) v.findViewById(R.id.tv_text);
+            namaButton = v.findViewById(R.id.btn);
+            txt = v.findViewById(R.id.tv_text);
         }
     }
 
@@ -46,18 +47,18 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final DataUpgrade current = itemPotatoes.get(position);
-        final String nama = itemPotatoes.get(position).getNama();
-//        holder.namaButton.setText(current.nama);
+        final DataUpgrade current = dataUpgrade.get(position);
         holder.txt.setText(current.nama);
-
+        holder.namaButton.setText("Beli\n"+ current.harga);
 
         holder.namaButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
-                Button btnn = (Button) v.findViewById(R.id.btn);
-                TextView txt = (TextView) v.findViewById(R.id.tv_text);
+                Button btnn = v.findViewById(R.id.btn);
+                SharedPreferences dataSP = context.getSharedPreferences("dataSP", 0);
+                int currTap;
+                SharedPreferences.Editor editData = dataSP.edit();
 
                 // KUDU DI FRAGMENT ATAS NGUBAH GAMBARNYA :)
 
@@ -69,39 +70,62 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
 //                ImageView pc = (ImageView) v.findViewById(R.drawable.pc0);
 //                ImageView kursi = (ImageView) v.findViewById(R.drawable.kursi0);
 
-                switch (itemPotatoes.get(position).level) {
+                switch (dataUpgrade.get(position).level) {
                     case 0:
                         btnn.setBackgroundResource(R.drawable.btn_round);
-                        Drawable d = btnn.getBackground();
-                        current.setLevel(1);
                         //Minuman, headset, poster, PC, kursi
-                        switch (itemPotatoes.get(position).nama){
+                        switch (dataUpgrade.get(position).nama){
                             case "Minuman":
 //                                holder.imgMinum.setImageResource(current.setGambar(R.drawable.minuman3));
 //                                Drawable m1 = minuman.getDrawable();
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 1)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Headset":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 1)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Poster":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 1)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "PC":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 1)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Kursi":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 1)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             default:
                                 break;
@@ -109,33 +133,56 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
                         break;
                     case 1:
                         btnn.setBackgroundResource(R.drawable.btn_round1);
-                        Drawable d1 = btnn.getBackground();
-                        current.setLevel(2);
-                        switch (itemPotatoes.get(position).nama){
+                        switch (dataUpgrade.get(position).nama){
                             case "Minuman":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 2)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Headset":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 2)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Poster":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 2)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "PC":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 2)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Kursi":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 2)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             default:
                                 break;
@@ -143,33 +190,56 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
                         break;
                     case 2:
                         btnn.setBackgroundResource(R.drawable.btn_round2);
-                        Drawable d2 = btnn.getBackground();
-                        current.setLevel(3);
-                        switch (itemPotatoes.get(position).nama){
+                        switch (dataUpgrade.get(position).nama){
                             case "Minuman":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 3)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Headset":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 3)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Poster":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 3)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "PC":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 3)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Kursi":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 3)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             default:
                                 break;
@@ -177,33 +247,56 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
                         break;
                     case 3:
                         btnn.setBackgroundResource(R.drawable.btn_round3);
-                        Drawable d3 = btnn.getBackground();
-                        current.setLevel(4);
-                        switch (itemPotatoes.get(position).nama){
+                        switch (dataUpgrade.get(position).nama){
                             case "Minuman":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 4)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                 holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Headset":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 4)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                 holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Poster":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 4)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "PC":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 4)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                 holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Kursi":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
-                                holder.txt.setText(current.nama + " (Level 4)");
-                                holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
+                                 holder.txt.setText(current.nama + " (Level "+current.getLevel()+")");
+                                holder.namaButton.setText("Beli\n"+ current.getHarga());
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             default:
                                 break;
@@ -211,33 +304,56 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
                         break;
                     case 4:
                         btnn.setBackgroundResource(R.drawable.btn_round4);
-                        Drawable d4 = btnn.getBackground();
-                        current.setLevel(5);
-                        switch (itemPotatoes.get(position).nama){
+                        switch (dataUpgrade.get(position).nama){
                             case "Minuman":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
                                 holder.txt.setText(current.nama + " (Level MAX)");
                                 holder.namaButton.setText("MAX");
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Headset":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
                                 holder.txt.setText(current.nama + " (Level MAX)");
                                 holder.namaButton.setText("MAX");
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Poster":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
                                 holder.txt.setText(current.nama + " (Level MAX)");
                                 holder.namaButton.setText("MAX");
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "PC":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
                                 holder.txt.setText(current.nama + " (Level MAX)");
                                 holder.namaButton.setText("MAX");
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             case "Kursi":
+                                current.setLevel(current.getLevel()+1);
                                 current.setHarga(current.getHarga() + 200);
                                 holder.txt.setText(current.nama + " (Level MAX)");
                                 holder.namaButton.setText("MAX");
+
+                                currTap = dataSP.getInt("keyTap", 5);
+                                editData.putInt("keyTap", currTap+current.level);
+                                editData.apply();
                                 break;
                             default:
                                 break;
@@ -251,9 +367,8 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
         });
     }
 
-
     @Override
     public int getItemCount() {
-        return itemPotatoes.size();
+        return dataUpgrade.size();
     }
 }
