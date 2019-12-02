@@ -16,7 +16,7 @@ public class FragmentBawah extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    public ArrayList<DataUpgrade> itemPotatoes = new ArrayList<>();
+    public static ArrayList<DataUpgrade> itemPotatoes = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){

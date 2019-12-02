@@ -1,5 +1,6 @@
 package com.bellarhoa.idle_sport;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -63,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this,Credit.class);
+            startActivity(intent);
             return true;
         }
 

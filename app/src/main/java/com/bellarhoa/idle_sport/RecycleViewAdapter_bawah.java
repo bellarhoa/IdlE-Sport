@@ -110,7 +110,7 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
                     }
                     currPoint-=current.getHarga();
                     current.setLevel(current.getLevel() + 1);
-                    current.setHarga(current.getHarga()*2+400);
+                    current.setHarga((current.getHarga()+400)*2+200);
                     if(current.level<4)btnn.setText("BELI\n"+String.valueOf(current.getHarga()));
                     else btnn.setText("MAX!");
                     ImageView image = ResourceArray.imageView[current.type];
@@ -118,7 +118,7 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
                     current.setNama(current.getNama() + " level: " + String.valueOf(current.getLevel() + 1));
                     currTap = dataSP.getInt("keyTap", 5);
                     editData.putInt("keyPoint", currPoint);
-                    editData.putInt("keyTap", currTap + current.level);
+                    editData.putInt("keyTap", currTap + current.level*2 + (current.harga-200)/500);
                     editData.putInt("keyHarga"+String.valueOf(position), current.getHarga());
                     editData.putInt("keyLevel"+String.valueOf(position), current.getLevel());
                     editData.apply();
