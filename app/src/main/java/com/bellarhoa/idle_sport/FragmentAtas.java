@@ -32,7 +32,7 @@ public class FragmentAtas extends Fragment {
 
         Intent mIntent = new Intent(getActivity(), FragmentBawah.class);
         Bundle mBundle = new Bundle();
-        mBundle.putInt("photo", R.id.imgMinuman);
+//        mBundle.putInt("photo", R.id.imgMinuman);
         mIntent.putExtras(mBundle);
 
         new Thread(new Runnable() {

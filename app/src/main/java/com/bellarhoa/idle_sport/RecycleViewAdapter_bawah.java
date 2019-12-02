@@ -1,4 +1,5 @@
 package com.bellarhoa.idle_sport;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
