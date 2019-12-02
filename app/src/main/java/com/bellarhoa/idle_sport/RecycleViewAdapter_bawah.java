@@ -81,7 +81,6 @@ public class RecycleViewAdapter_bawah extends RecyclerView.Adapter<RecycleViewAd
 //                                Drawable m1 = minuman.getDrawable();
                                 current.setHarga(current.getHarga() + 200);
                                 holder.txt.setText(current.nama + " (Level 1)");
-
                                 holder.namaButton.setText("Beli\n Rp. "+ current.getHarga());
                                 break;
                             case "Headset":
