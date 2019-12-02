@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +22,8 @@ public class FragmentAtas extends Fragment {
     public static ImageView imagePoster;
     public static ImageView imageHeadset;
     public static ImageView imageChair;
+    private TextView textViewPoint;
+    private TextView textViewClickPoint;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +35,8 @@ public class FragmentAtas extends Fragment {
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
 
-        final TextView textViewPoint = getActivity().findViewById(R.id.textView_point);
+        textViewPoint = getActivity().findViewById(R.id.textView_point);
+        textViewClickPoint = getActivity().findViewById(R.id.textView_clickPoint);
         final ProgressBar progBar = getActivity().findViewById(R.id.progBar);
         ImageView layoutTap = getActivity().findViewById(R.id.layoutTap);
 
@@ -68,8 +73,7 @@ public class FragmentAtas extends Fragment {
                             public void run() {
                                 SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP",0);
                                 int currPoint = dataSP.getInt("keyPoint", 0) + 10;
-                                textViewPoint.setText(String.valueOf(currPoint));
-
+                                textViewPoint.setText("$"+String.valueOf(currPoint));
                                 SharedPreferences.Editor editData = dataSP.edit();
                                 editData.putInt("keyPoint", currPoint);
                                 editData.apply();
@@ -99,12 +103,18 @@ public class FragmentAtas extends Fragment {
                 SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP", 0);
                 int currPoint = dataSP.getInt("keyPoint", 0);
                 int currTap = dataSP.getInt("keyTap", 5);
-                textViewPoint.setText(String.valueOf(currPoint)+" +"+String.valueOf(currTap));
-
+                textViewPoint.setText("$"+String.valueOf(currPoint));
+                textViewClickPoint.setText("+$"+String.valueOf(currTap));
+                startAnimation();
                 SharedPreferences.Editor editData = dataSP.edit();
                 editData.putInt("keyPoint", currPoint+currTap);
                 editData.apply();
             }
         });
+    }
+
+    private void startAnimation() {
+        Animation animation = AnimationUtils.loadAnimation(this.getActivity(), R.anim.click_duit);
+        textViewClickPoint.startAnimation(animation);
     }
 }
