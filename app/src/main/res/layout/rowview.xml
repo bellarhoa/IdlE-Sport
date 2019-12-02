@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="#000000">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#000000">
 
         <TextView
             android:id="@+id/tv_text"
@@ -19,8 +21,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="35dp"
-            android:text="Minuman (Level X)"
-            android:textSize="20sp" />
+            android:text="Minuman (Level 0)"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            />
 
         <Button
             android:id="@+id/btn"
@@ -28,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/btn_round5"
-            android:text="Beli\n0000" />
+            android:text="Beli\nRp 0" />
+
 
     </RelativeLayout>
 
