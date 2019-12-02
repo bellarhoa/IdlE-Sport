@@ -112,7 +112,7 @@ public class FragmentAtas extends Fragment {
     }
 
     private void startAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this.getActivity(), R.anim.animation_clickPoint);
+        Animation animation = AnimationUtils.loadAnimation(this.getActivity(), R.anim.animation_clickpoint);
         textViewClickPoint.startAnimation(animation);
     }
 }
