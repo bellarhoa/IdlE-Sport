@@ -19,7 +19,6 @@
         android:layout_margin="10dp"
         android:textSize="20dp"/>
 
-<<<<<<< HEAD
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -28,15 +27,14 @@
             android:id="@+id/imgMinuman"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/minuman0"/>
+            android:src="@drawable/ic_launcher_foreground"/>
 
     </LinearLayout>
-=======
+
     <ImageView
         android:id="@+id/imageBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"/>
->>>>>>> origin/master
 
 </LinearLayout>

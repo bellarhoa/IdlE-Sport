@@ -1,8 +1,10 @@
 package com.bellarhoa.idle_sport;
 
 public class DataUpgrade {
-    private String nama;
-    private int level, harga;
+    public String nama;
+    public int level;
+    public int harga;
+
 
     public DataUpgrade(String nama, int level, int harga) {
         setNama(nama);

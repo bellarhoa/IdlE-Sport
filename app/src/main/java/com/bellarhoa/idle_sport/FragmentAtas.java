@@ -1,5 +1,6 @@
 package com.bellarhoa.idle_sport;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,6 +29,11 @@ public class FragmentAtas extends Fragment {
         final TextView textViewPoint = getActivity().findViewById(R.id.textView_point);
         final ProgressBar progBar = getActivity().findViewById(R.id.progBar);
         ImageView gambarBackground = getActivity().findViewById(R.id.imageBackground);
+
+        Intent mIntent = new Intent(getActivity(), FragmentBawah.class);
+        Bundle mBundle = new Bundle();
+        mBundle.putInt("photo", R.id.imgMinuman);
+        mIntent.putExtras(mBundle);
 
         new Thread(new Runnable() {
             @Override
