@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
-
 public class FragmentAtas extends Fragment {
     public static ImageView imageDrink;
     public static ImageView imagePC;
@@ -114,7 +112,7 @@ public class FragmentAtas extends Fragment {
     }
 
     private void startAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this.getActivity(), R.anim.click_duit);
+        Animation animation = AnimationUtils.loadAnimation(this.getActivity(), R.anim.animation_clickPoint);
         textViewClickPoint.startAnimation(animation);
     }
 }
