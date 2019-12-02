@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
 public class FragmentAtas extends Fragment {
     public static ImageView imageDrink;
     public static ImageView imagePC;
@@ -39,6 +41,10 @@ public class FragmentAtas extends Fragment {
         imageHeadset = getActivity().findViewById(R.id.imagepeople);
         imageChair = getActivity().findViewById(R.id.imagechair);
 
+        SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP",0);
+        int currPoint = dataSP.getInt("keyPoint", 0);
+        textViewPoint.setText(String.valueOf(currPoint));
+
         Intent mIntent = new Intent(getActivity(), FragmentBawah.class);
         Bundle mBundle = new Bundle();
         mIntent.putExtras(mBundle);
@@ -52,7 +58,7 @@ public class FragmentAtas extends Fragment {
                     int i = 0;
                     while (true) {
                         i++;
-                        Thread.sleep(1000);
+                        Thread.sleep(500);
 
                         //Untuk lihat apa thread jalan atau tidak di "Run"
 //                        Log.i("not dead", "not dead" + i);

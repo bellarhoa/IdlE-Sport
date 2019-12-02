@@ -1,5 +1,6 @@
 package com.bellarhoa.idle_sport;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ public class FragmentBawah extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    ArrayList<DataUpgrade> itemPotatoes = new ArrayList<>();
+    public ArrayList<DataUpgrade> itemPotatoes = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
@@ -34,15 +35,21 @@ public class FragmentBawah extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
+
+        SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP",0);
+        for (int i=0 ; i<itemPotatoes.size() ; i++){
+            itemPotatoes.get(i).setHarga(dataSP.getInt("keyHarga"+String.valueOf(i), itemPotatoes.get(i).getHarga()));
+            itemPotatoes.get(i).setLevel(dataSP.getInt("keyLevel"+String.valueOf(i), itemPotatoes.get(i).getLevel()));
+        }
     }
 
     private void initializeData(){
         itemPotatoes = new ArrayList<>();
         itemPotatoes.add(new DataUpgrade("Drink", 0,100,0));
-        itemPotatoes.add(new DataUpgrade("PC",0,200,1));
-        itemPotatoes.add(new DataUpgrade("People",0,350, 3));
-        itemPotatoes.add(new DataUpgrade("Poster",0,450, 2));
-        itemPotatoes.add(new DataUpgrade("Chair",0,250, 4));
+        itemPotatoes.add(new DataUpgrade("PC",0,1000,1));
+        itemPotatoes.add(new DataUpgrade("Headset",0,600, 3));
+        itemPotatoes.add(new DataUpgrade("Poster",0,200, 2));
+        itemPotatoes.add(new DataUpgrade("Chair",0,800, 4));
         //Minuman, headset, poster, PC, kursi
 
     }
