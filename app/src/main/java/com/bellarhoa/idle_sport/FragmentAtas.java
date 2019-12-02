@@ -23,6 +23,7 @@ public class FragmentAtas extends Fragment {
     public static ImageView imageHeadset;
     public static ImageView imageChair;
     private TextView textViewPoint;
+    private TextView textViewClickPoint;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +36,7 @@ public class FragmentAtas extends Fragment {
         super.onActivityCreated(savedState);
 
         textViewPoint = getActivity().findViewById(R.id.textView_point);
+        textViewClickPoint = getActivity().findViewById(R.id.textView_clickPoint);
         final ProgressBar progBar = getActivity().findViewById(R.id.progBar);
         ImageView layoutTap = getActivity().findViewById(R.id.layoutTap);
 
@@ -72,7 +74,6 @@ public class FragmentAtas extends Fragment {
                                 SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP",0);
                                 int currPoint = dataSP.getInt("keyPoint", 0) + 10;
                                 textViewPoint.setText("$"+String.valueOf(currPoint));
-
                                 SharedPreferences.Editor editData = dataSP.edit();
                                 editData.putInt("keyPoint", currPoint);
                                 editData.apply();
@@ -102,7 +103,8 @@ public class FragmentAtas extends Fragment {
                 SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP", 0);
                 int currPoint = dataSP.getInt("keyPoint", 0);
                 int currTap = dataSP.getInt("keyTap", 5);
-                textViewPoint.setText("$"+String.valueOf(currTap)+" + $"+String.valueOf(currPoint));
+                textViewPoint.setText("$"+String.valueOf(currPoint));
+                textViewClickPoint.setText("+$"+String.valueOf(currTap));
                 startAnimation();
                 SharedPreferences.Editor editData = dataSP.edit();
                 editData.putInt("keyPoint", currPoint+currTap);
@@ -113,6 +115,6 @@ public class FragmentAtas extends Fragment {
 
     private void startAnimation() {
         Animation animation = AnimationUtils.loadAnimation(this.getActivity(), R.anim.click_duit);
-        textViewPoint.startAnimation(animation);
+        textViewClickPoint.startAnimation(animation);
     }
 }
