@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ public class FragmentAtas extends Fragment {
 
         final TextView textViewPoint = getActivity().findViewById(R.id.textView_point);
         final ProgressBar progBar = getActivity().findViewById(R.id.progBar);
-        ImageView gambarBackground = getActivity().findViewById(R.id.imageBackground);
+        ImageView layoutTap = getActivity().findViewById(R.id.layoutTap);
 
         Intent mIntent = new Intent(getActivity(), FragmentBawah.class);
         Bundle mBundle = new Bundle();
@@ -67,7 +68,7 @@ public class FragmentAtas extends Fragment {
             }
         }).start();
 
-        gambarBackground.setOnClickListener(new View.OnClickListener() {
+        layoutTap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Hasil Tap default aja = 5, sementara pakai ini
