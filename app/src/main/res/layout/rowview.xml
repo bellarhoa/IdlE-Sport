@@ -25,7 +25,7 @@
             android:layout_marginRight="35dp"
             android:text="Minuman (Level 0)"
             android:textColor="#ffffff"
-            android:textSize="20dp"
+            android:textSize="@dimen/defaultFontSize"
             app:fontFamily="casual" />
 
         <Button
