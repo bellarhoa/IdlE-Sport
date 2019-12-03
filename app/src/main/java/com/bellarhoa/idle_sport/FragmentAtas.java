@@ -51,8 +51,6 @@ public class FragmentAtas extends Fragment {
         Intent mIntent = new Intent(getActivity(), FragmentBawah.class);
         Bundle mBundle = new Bundle();
         mIntent.putExtras(mBundle);
-        ImageView img = getActivity().findViewById(R.id.imageposter);
-        img.setImageResource(R.drawable.poster2);
 
         new Thread(new Runnable() {
             @Override
