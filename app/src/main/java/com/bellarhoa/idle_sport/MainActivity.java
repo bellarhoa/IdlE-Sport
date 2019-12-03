@@ -23,12 +23,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        SharedPreferences dataSP = getSharedPreferences("dataSP",0);
-//
-//        SharedPreferences.Editor editData = dataSP.edit();
-//        editData.putInt("keyTap", 5);
-//        editData.apply();
-
         frgManager = getSupportFragmentManager();
         frgtransaction = frgManager.beginTransaction();
         Bundle bundle = new Bundle();

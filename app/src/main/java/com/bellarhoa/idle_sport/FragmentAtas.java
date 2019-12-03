@@ -62,7 +62,6 @@ public class FragmentAtas extends Fragment {
                         Thread.sleep(500);
 
                         //Untuk lihat apa thread jalan atau tidak di "Run"
-//                        Log.i("not dead", "not dead" + i);
 
                         progBar.post(new Runnable() {
                             @Override
@@ -86,14 +85,6 @@ public class FragmentAtas extends Fragment {
         layoutTap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Hasil Tap default aja = 5, sementara pakai ini
-//                SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP", 0);
-//                int currPoint = dataSP.getInt("keyPoint", 0);
-//                textViewPoint.setText(String.valueOf(currPoint+5) + "\t+5");
-//
-//                SharedPreferences.Editor editData = dataSP.edit();
-//                editData.putInt("keyPoint", currPoint);
-//                editData.apply();
 
                 //Ambil hasil Tap dari level upgrade
                 SharedPreferences dataSP = getActivity().getSharedPreferences("dataSP", 0);
